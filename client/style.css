@@ -1,0 +1,88 @@
+body {
+  background-color: #efefef;
+}
+
+.wrapper {
+ display: flex;
+ flex-flow: column;
+ text-align: center;
+ justify-content: center;
+ width: 100%;
+}
+
+.experiment {
+ display: flex;
+ justify-content: space-around;
+}
+
+.error {
+  color: red
+}
+
+.image {
+    width: 50vw;
+    height: 100vh;
+    background-image: url("https://lp2.hm.com/hmgoepprod?set=source[/6c/c0/6cc0aca9ba61d4420fb3a28a13cfee961b16a2c0.jpg],origin[dam],category[home_showercurtains],type[DESCRIPTIVESTILLLIFE],hmver[1]&call=url[file:/product/mobilemain]");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.relax {
+  background-image: url("https://transparentpsi.com:3000/relaxation_image/cosmos.jpg");
+  width: 100%;
+  height: 100vh;
+  background-color: bisque
+}
+
+.sample {
+  height: 100vh;
+}
+
+h1 h2 h3 {
+  font-weight: bold;
+  margin-bottom: 1%;
+}
+
+.form-control {
+  width: 20%;
+  margin-left: 40%;
+  margin-bottom: 1%;
+}
+
+h4 {
+  margin-top: 2%;
+  padding-left: 20%;
+  padding-right:20%;
+}
+
+h1 {
+  margin-bottom: 3%;
+}
+
+p {
+  margin-top: 3%;
+  size: 3rem;
+  padding-left: 20%;
+  padding-right:20%;
+  line-height: 1.365rem;
+  text-align: center justify;
+}
+
+.btn {
+  margin-left: 1%;
+  margin-top: 2%;
+  width: 12%;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.nextLong {
+  margin-left: 1%;
+  margin-top: 2%;
+  width: 60%;
+}
+
+.warn {
+  color: red;
+}
