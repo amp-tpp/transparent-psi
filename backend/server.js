@@ -17,7 +17,7 @@ const createProdApp = app => {
   return https.createServer(options,app)
 }
 
-const server = process.argv[0] === 'prod' ? createProdApp(app) : app;
+const server = process.argv.includes('prod') ? createProdApp(app) : app;
 
 server.listen(port, () => {
   console.log('Server running on port %d', port);

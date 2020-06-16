@@ -37,7 +37,7 @@ test('pic or didn`t happened', (t) => {
 });
 
 test('english motherf* you speak it', (t) => {
-  let options = ['English', 'Magyar'];
+  let options = ['1_English', '2_Magyar'];
   options.forEach(function(type){
     request(app)
       .get('/lang/' + type)
@@ -82,7 +82,6 @@ test('user is valid', (t) => {
   let tempUser =  user.getUser(mockReq);
   t.same(tempUser.id, 5)
   t.ok(sideOptions.includes(tempUser.side), "valid user side")
-  t.ok(tempUser.random > 0 && tempUser.random < 1, "valid user random")
   t.end();
 });
 
