@@ -1,20 +1,23 @@
 'use strict';
 
-var fs = require('fs')
+const fs = require('fs')
 
-var hskey = fs.readFileSync('key.pem');
-var hscert = fs.readFileSync('cert.pem')
-var options = {
-    key: hskey,
-    cert: hscert
-};
+const https = require('https')
 
-var https = require('https')
+const app = require('./index');
+const port = process.env.PORT || 8085;
 
-var app = require('./index');
-var port = process.env.PORT || 8085;
+const createProdApp = app => {
+  const hskey = fs.readFileSync('key.pem');
+  const hscert = fs.readFileSync('cert.pem')
+  const options = {
+      key: hskey,
+      cert: hscert
+  };
+  return https.createServer(options,app)
+}
 
-var server = https.createServer(options,app)
+const server = process.argv[0] === 'prod' ? createProdApp(app) : app;
 
 server.listen(port, () => {
   console.log('Server running on port %d', port);
