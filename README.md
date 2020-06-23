@@ -160,6 +160,15 @@ $ pm2 start frontend.sh
         }
         ```
 
+##### Ports
+
+- client 80/443 (prod) 8080 (dev)
+- image 8081
+- image-demo 8082 
+- admin 8083
+- backend 8084
+
+
 ##### Deployment
 
 Run the server:
