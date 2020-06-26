@@ -1,4 +1,5 @@
-const baseUrl = "https://transparentpsi.com:8085"
+var basePath = `${window.location.protocol}//${window.location.hostname}`
+var baseUrl = `${basePath}:8085`
 
 const domInjector = (type, target, html,  className, listener=null) => {
   let targetElement = document.querySelector(target)
