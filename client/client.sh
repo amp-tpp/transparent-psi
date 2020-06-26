@@ -1,1 +1,1 @@
-sudo http-server . -p 80 > ../../transparent-psi-results/logs/client-log
+http-server . -p 8080 > ../../transparent-psi-results/logs/client-log

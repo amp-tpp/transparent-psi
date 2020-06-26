@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server .",
+    "start": "sh client.sh",
+    "start:prod": "sh client-secure.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "run-scripts": {
