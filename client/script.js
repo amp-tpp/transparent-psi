@@ -16,20 +16,22 @@ var liveCounter = 60
 var sessionTypes = ["live", "pilot", "test"]
 var timeoutId = ""
 var ages = ["0-17", "18-29", "30-44", "45-59", "60+"]
-var picServer = "https://transparentpsi.com:3002/"
-var testPicServer = "https://transparentpsi.com:3000/"
+var baseUrl = `${window.location.protocol}//${window.location.hostname}`
+var server = `${baseUrl}:8085`
+var picServer = `${baseUrl}:8081/`
+var testPicServer = `${baseUrl}:8082/`
 var sampleImages = {
-  ff: "https://transparentpsi.com:3002/sample%20images/Female_couple_014_v.jpg",
-  mm: "https://transparentpsi.com:3002/sample%20images/Opposite-sex_couple_005_h.jpg",
-  fm: "https://transparentpsi.com:3002/sample%20images/Opposite-sex_couple_005_h.jpg",
-  mf: "https://transparentpsi.com:3002/sample%20images/Opposite-sex_couple_005_h.jpg"
+  ff: `${picServer}sample%20images/Female_couple_014_v.jpg`,
+  mm: `${picServer}sample%20images/Opposite-sex_couple_005_h.jpg`,
+  fm: `${picServer}sample%20images/Opposite-sex_couple_005_h.jpg`,
+  mf: `${picServer}sample%20images/Opposite-sex_couple_005_h.jpg`
 }
 
 var sampleTestImages = {
-  ff: "https://transparentpsi.com:3000/sample%20images/Female_couple_014_v.jpg",
-  mm: "https://transparentpsi.com:3000/sample%20images/Opposite-sex_couple_005_h.jpg",
-  fm: "https://transparentpsi.com:3000/sample%20images/Opposite-sex_couple_005_h.jpg",
-  mf: "https://transparentpsi.com:3000/sample%20images/Opposite-sex_couple_005_h.jpg"
+  ff: `${testPicServer}sample%20images/Female_couple_014_v.jpg`,
+  mm: `${testPicServer}sample%20images/Opposite-sex_couple_005_h.jpg`,
+  fm: `${testPicServer}sample%20images/Opposite-sex_couple_005_h.jpg`,
+  mf: `${testPicServer}sample%20images/Opposite-sex_couple_005_h.jpg`
 }
 
 const choiceConverter = {
@@ -621,7 +623,7 @@ const renderLangs = (payload) => {
 }
 
 (() => {
-  server = initServerConnection("https://transparentpsi.com:8085")
+  server = initServerConnection(server)
   server.ping(setSessionId)
   server.langs(renderLangs)
 })()
