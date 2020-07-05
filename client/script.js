@@ -157,6 +157,8 @@ const renderIntro = () => {
     ["input", ".intro", "", "experimenter_ID_code form-control"],
     ["h4", ".intro", texts.introLabCode],
     ["input", ".intro", "", "laboratory_ID_code form-control"],
+    ["h4", ".intro", texts.introExpEmail],
+    ["input", ".intro", "", "experimenter_email form-control"],
     ["span", ".intro", texts.rewardNeeded],
     ["input", ".intro", "", "reward"],
     ["p", ".intro", ""],
@@ -174,7 +176,7 @@ const renderIntro = () => {
 
 const checkIds = () => {
   let choosenType = document.querySelector(".session").value
-  setUser(["experimenter_ID_code", "laboratory_ID_code"])
+  setUser(["experimenter_ID_code", "laboratory_ID_code", "experimenter_email"])
   neededReward = document.querySelector(".reward").checked
   if(choosenType == "test"){
     liveCounter = 1

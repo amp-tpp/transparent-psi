@@ -29,7 +29,8 @@ const headerElements = [
     "guessed_side",
     "target_side",
     "reward_type",
-    "sides_match"
+    "sides_match",
+    "experimenter_email"
 ]
 
 var savePath = ""
@@ -82,6 +83,7 @@ const verifiedSave = (records, agent) => {
     records.timestamp = `${sha256(records.timestamp)} ${agent}`
     records.experimenter_ID_code = sha256(records.experimenter_ID_code)
     records.laboratory_ID_code = sha256(records.laboratory_ID_code)
+    records.experimenter_email = sha256(records.experimenter_email)
     if (records.session_type == "test") {
         writer = csvTestWriter
     }
