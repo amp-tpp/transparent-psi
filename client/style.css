@@ -50,6 +50,14 @@ h1 h2 h3 {
   margin-bottom: 1%;
 }
 
+span {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+}
+
 h4 {
   margin-top: 2%;
   padding-left: 20%;

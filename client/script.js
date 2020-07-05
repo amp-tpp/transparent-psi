@@ -161,6 +161,12 @@ const renderIntro = () => {
     ["input", ".intro", "", "experimenter_email form-control"],
     ["span", ".intro", texts.rewardNeeded],
     ["input", ".intro", "", "reward"],
+    ["span", ".intro", texts.true],
+    ["input", ".intro", "", "trial_type"],
+    ["span", ".intro", texts.sham],
+    ["input", ".intro", "", "trial_type"],
+    ["span", ".intro", texts.systematicControl],
+    ["input", ".intro", "", "trial_type"],
     ["p", ".intro", ""],
     ["h4", ".intro", texts.session],
     ["select", ".intro", "", "session form-control"],
@@ -168,11 +174,17 @@ const renderIntro = () => {
     ["button", ".intro", texts.nextButton, "next btn btn-primary", checkIds]
   ])
   document.querySelector(".reward").type = "checkbox"
+  document.querySelectorAll(".trial_type").forEach(element => { setAttributes(element, {"type" : "checkbox", "checked" : "checked"}) })
   sessionTypes.forEach(element => {
     domInjector("option", ".session", element)
   })
 }
 
+const setAttributes = (element, attrs) => {
+  for(var key in attrs) {
+    element.setAttribute(key, attrs[key]);
+  }
+}
 
 const checkIds = () => {
   let choosenType = document.querySelector(".session").value
