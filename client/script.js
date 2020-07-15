@@ -623,6 +623,9 @@ const renderLangs = (payload) => {
 }
 
 (() => {
+  // http://localhost:8080/?secretKey=10001&antherConfig=321321
+  window.config = Object.fromEntries(new URLSearchParams(location.search));
+  console.log('launched with config', window.config)
   server = initServerConnection(server)
   server.ping(setSessionId)
   server.langs(renderLangs)
