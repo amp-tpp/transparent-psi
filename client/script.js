@@ -149,8 +149,12 @@ const start = () => {
 }
 
 const erase = (target) => {
-  document.querySelector(target).innerHTML = ""
-  return console.log
+  try {
+    document.querySelector(target).innerHTML = ""
+    return console.log
+  } catch (e) {
+    return console.log
+  }
 }
 
 const renderIntro = () => {
@@ -662,3 +666,19 @@ const renderLangs = (payload) => {
   server.ping(setSessionId)
   server.langs(renderLangs)
 })()
+
+window.onload = function(e){ 
+  window.config = Object.fromEntries(new URLSearchParams(location.search));
+  console.log('launched with config', window.config)
+  if(window.config.available_trial_type){
+    server.user = Object.create(window.config)
+    console.log(server.user)
+    liveCounter = 1
+    sessionType = "test"
+    picServer = testPicServer
+    sampleImages = sampleTestImages
+    renderWelcome(texts.warnTest)
+  } else {
+    console.log('well fuck you')
+  }
+}
