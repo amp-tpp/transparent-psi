@@ -38,7 +38,10 @@ const getUser = () => {
       "target_side": "NA",
       "reward_type": "NA",
       "sides_match": "NA",
-      "experimenter_email" : "NA" 
+      "experimenter_email" : "NA",
+      "trial_type" : "NA",
+      "available_trial_type" : "NA",
+      "in_lab" : 1
   }
 }
 

@@ -1,6 +1,9 @@
 var texts = ""
 var defaultTexts = ""
 var sessionType = "test"
+var in_lab = 1
+var trial_type = 0
+var available_trial_type = 0
 var server = ""
 var userOrientation = ""
 var picList = []
@@ -13,7 +16,7 @@ var liveDateString = "15-Aug-2018"
 var liveDate = new Date(Date.parse(liveDateString.replace(/-/g, " ")))
 var timeIsNotUp = true
 var liveCounter = 60
-var sessionTypes = ["live", "pilot", "test"]
+var sessionTypes = ["live", "pilot", "test", "online"]
 var timeoutId = ""
 var ages = ["0-17", "18-29", "30-44", "45-59", "60+"]
 var baseUrl = `${window.location.protocol}//${window.location.hostname}`
@@ -186,6 +189,14 @@ const setAttributes = (element, attrs) => {
   }
 }
 
+const getAvailableTrialType = () => {
+  let trialTypes = document.querySelectorAll(".trial_type")
+  let valueToLookUp = ''
+  let lookUpTable = {'100' : 1, '010' : 2, '001' : 3, '110' : 4, '101' : 5, '011' : 6, '111' : 7 }
+  trialTypes.forEach(i => i.checked ? valueToLookUp += '1' : valueToLookUp += '0')
+  server.user.available_trial_type = lookUpTable[valueToLookUp]
+}
+
 const checkIds = () => {
   let choosenType = document.querySelector(".session").value
   setUser(["experimenter_ID_code", "laboratory_ID_code", "experimenter_email"])
@@ -196,7 +207,7 @@ const checkIds = () => {
     picServer = testPicServer
     sampleImages = sampleTestImages
     renderWelcome(texts.warnTest)
-      }
+  }
   if(choosenType == "pilot"){
     sessionType = "pilot"
     if (server.user.experimenter_ID_code == "" || server.user.laboratory_ID_code == "") {
@@ -215,7 +226,17 @@ const checkIds = () => {
       server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
       domUpdater(".intro", [])
     }
- }
+  }
+  if(choosenType == "online"){
+    getAvailableTrialType()
+    sessionType = "online"
+    server.user.in_lab = 0
+    domUpdater(".wrapper", [
+      ["h4", ".wrapper", baseUrl + '/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "warn"]
+    ])
+    picServer = testPicServer
+    sampleImages = sampleTestImages
+  }
 }
 
 const handleIdCheckFake = (response) => {
