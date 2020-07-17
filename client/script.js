@@ -137,7 +137,15 @@ const setLang = (payload) => {
   console.log(payload)
   texts = payload.texts
   server.lang("English", setDefaultLang)
-  renderIntro()
+  if (window.config.session_type) {
+    sessionType = 'online'
+    erase('.wrapper')
+    domInjector('div', '.wrapper', '', 'intro')
+    renderForm()
+    
+  } else {
+    renderIntro()
+  }
 }
 
 const setDefaultLang = (payload) => {
@@ -151,10 +159,10 @@ const start = () => {
 const erase = (target) => {
   try {
     document.querySelector(target).innerHTML = ""
-    return console.log
-  } catch (e) {
-    return console.log
+  } catch (error) {
+    
   }
+  return console.log
 }
 
 const renderIntro = () => {
@@ -233,10 +241,11 @@ const checkIds = () => {
   }
   if(choosenType == "online"){
     getAvailableTrialType()
-    sessionType = "online"
+    sessionType = 'online'
+    server.user.session_type = 'online'
     server.user.in_lab = 0
     domUpdater(".wrapper", [
-      ["h4", ".wrapper", baseUrl + '/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "warn"]
+      ["h4", ".wrapper", baseUrl + ':8080/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "warn"]
     ])
     picServer = testPicServer
     sampleImages = sampleTestImages
@@ -273,7 +282,8 @@ const renderTestWarning = () => {
   ])
 }
 
-const renderWelcome = (text="") => {
+const renderWelcome = 
+(text="") => {
   if (sessionType == "pilot") {
     text = texts.warnPilot
   }
@@ -586,7 +596,7 @@ const pushServer = (target ,guess, pics) => {
     server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     server.user.sides_match = target == guess
   }
-  server.user.session_type = sessionType
+  server.user.session_type = window.config && window.config.session_type ? window.config.session_type : sessionType
   server.user.target_side = target
   server.user.timestamp = new Date().toString()
   server.push(server.user, console.log);
@@ -661,24 +671,9 @@ const renderLangs = (payload) => {
   domInjector("button", ".content", "Start", "btn btn-primary", start)
 }
 
-(() => {
+
+window.onload = function(e){ 
   server = initServerConnection(server)
   server.ping(setSessionId)
   server.langs(renderLangs)
-})()
-
-window.onload = function(e){ 
-  window.config = Object.fromEntries(new URLSearchParams(location.search));
-  console.log('launched with config', window.config)
-  if(window.config.available_trial_type){
-    server.user = Object.create(window.config)
-    console.log(server.user)
-    liveCounter = 1
-    sessionType = "test"
-    picServer = testPicServer
-    sampleImages = sampleTestImages
-    renderWelcome(texts.warnTest)
-  } else {
-    console.log('well fuck you')
-  }
 }
