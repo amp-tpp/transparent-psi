@@ -10,6 +10,7 @@ var picList = []
 var successSexCounter = 0
 var firstESP = true
 var successNeutralCounter = 0
+var trialTypeList = []
 var activeKeyListener = false
 var neededReward = false
 var liveDateString = "15-Aug-2018"
@@ -201,17 +202,21 @@ const setAttributes = (element, attrs) => {
   }
 }
 
+const lookUpTable = {'100' : 1, '010' : 2, '001' : 3, '110' : 4, '101' : 5, '011' : 6, '111' : 7 }
+
 const getAvailableTrialType = () => {
   let trialTypes = document.querySelectorAll(".trial_type")
   let valueToLookUp = ''
-  let lookUpTable = {'100' : 1, '010' : 2, '001' : 3, '110' : 4, '101' : 5, '011' : 6, '111' : 7 }
   trialTypes.forEach(i => i.checked ? valueToLookUp += '1' : valueToLookUp += '0')
   server.user.available_trial_type = lookUpTable[valueToLookUp]
+  available_trial_type = server.user.available_trial_type
 }
 
 const checkIds = () => {
   let choosenType = document.querySelector(".session").value
   setUser(["experimenter_ID_code", "laboratory_ID_code", "experimenter_email"])
+  getAvailableTrialType()
+  server.user.in_lab = in_lab
   neededReward = document.querySelector(".reward").checked
   if(choosenType == "test"){
     liveCounter = 1
@@ -240,7 +245,6 @@ const checkIds = () => {
     }
   }
   if(choosenType == "online"){
-    getAvailableTrialType()
     sessionType = 'online'
     server.user.session_type = 'online'
     server.user.in_lab = 0
@@ -528,7 +532,18 @@ const experimentStarter = (key) => {
   }
 }
 
+const trialTypeLists = {
+  1 : ["t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t"],
+  2 : ["sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh"],
+  3 : ["sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc"],
+  4 : ["t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh"],
+  5 : ["t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc"],
+  6 : ["sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc"],
+  7 : ["t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "t", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sh", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc", "sc"]
+}
+
 const renderExperiment = () => {
+  trialTypeList = trialTypeLists[available_trial_type]
   timeOut()
   erase(".intro")
   keyEventListener(keyEventHandler)
@@ -580,6 +595,10 @@ const popPic = () => {
   return shuffle(picList).splice(0,1)[0]
 }
 
+const popTrialType = () => {
+  return shuffle(trialTypeList).splice(0,1)[0]
+}
+
 const pushServer = (target ,guess, pics) => {
   if (target == guess) {
     if (pics.includes("bern")) {
@@ -605,13 +624,13 @@ const pushServer = (target ,guess, pics) => {
 const handlePing = (side) => {
   var actualPic = popPic()
   return (content) => {
-  pushServer(content.side, side, actualPic)
-  server.user.trial_number += 1
-  if (content.side == side) {
-    document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
-  } else {
-    document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
-  }
+    pushServer(content.side, side, actualPic)
+    server.user.trial_number += 1
+    if (content.side == side) {
+      //document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
+    } else {
+      //document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
+    }
   }
 }
 
