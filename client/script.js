@@ -612,7 +612,14 @@ const pushServer = (target ,guess, pics) => {
     server.user.reward_type == "NA"
     server.user.sides_match = "NA"
   } else {
-    server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
+    if(server.user.trial_type === 't') {
+      server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
+    } else if (server.user.trial_type === 'sh') {
+      server.user.reward_type = "neutral"
+    } else if(server.user.trial_type === 'sc') {
+      server.user.reward_type = "erotic"
+    } 
+    //server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     server.user.sides_match = target == guess
   }
   server.user.session_type = window.config && window.config.session_type ? window.config.session_type : sessionType
@@ -622,14 +629,22 @@ const pushServer = (target ,guess, pics) => {
 }
 
 const handlePing = (side) => {
+  var actualTrialType = popTrialType()
+  server.user.trial_type = actualTrialType
   var actualPic = popPic()
   return (content) => {
     pushServer(content.side, side, actualPic)
     server.user.trial_number += 1
-    if (content.side == side) {
-      //document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
-    } else {
-      //document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
+    if (actualTrialType === 't') {
+      if (content.side == side) {
+        document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
+      } else {
+        document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
+      }
+    } else if (actualTrialType === 'sh') {
+      document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
+    } else if (actualTrialType === 'sc') {
+      document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
     }
   }
 }
