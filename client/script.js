@@ -11,6 +11,7 @@ var successSexCounter = 0
 var firstESP = true
 var successNeutralCounter = 0
 var trialTypeList = []
+var choosenLang = "NA"
 var activeKeyListener = false
 var neededReward = false
 var liveDateString = "15-Aug-2018"
@@ -135,7 +136,6 @@ const setUserOrientation = (sex, orientation) => {
 }
 
 const setLang = (payload) => {
-  console.log(payload)
   texts = payload.texts
   server.lang("English", setDefaultLang)
   if (window.config.session_type) {
@@ -143,7 +143,6 @@ const setLang = (payload) => {
     erase('.wrapper')
     domInjector('div', '.wrapper', '', 'intro')
     renderForm()
-    
   } else {
     renderIntro()
   }
@@ -154,7 +153,9 @@ const setDefaultLang = (payload) => {
 }
 
 const start = () => {
-  server.lang(document.querySelector(".langs").value, setLang)
+  choosenLang = document.querySelector(".langs").value
+  server.user.choosenLang = choosenLang
+  server.lang(choosenLang, setLang)
 }
 
 const erase = (target) => {
