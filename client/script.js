@@ -642,9 +642,9 @@ const handlePing = (side) => {
         document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
       }
     } else if (actualTrialType === 'sh') {
-      document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
-    } else if (actualTrialType === 'sc') {
       document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
+    } else if (actualTrialType === 'sc') {
+      document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
     }
   }
 }
