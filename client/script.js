@@ -154,7 +154,7 @@ const setDefaultLang = (payload) => {
 }
 
 const start = () => {
-  choosenLang = document.querySelector(".langs").value
+  choosenLang = window.config.choosenLang || document.querySelector(".langs").value
   server.user.choosenLang = choosenLang
   server.lang(choosenLang, setLang)
 }
@@ -710,5 +710,10 @@ const renderLangs = (payload) => {
 window.onload = function(e){ 
   server = initServerConnection(server)
   server.ping(setSessionId)
-  server.langs(renderLangs)
+  if(!window.config.choosenLang) {
+    // user should choose a language
+    server.langs(renderLangs)
+  } else {
+    start()
+  }
 }
