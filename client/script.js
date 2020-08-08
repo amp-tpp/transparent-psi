@@ -139,10 +139,11 @@ const setLang = (payload) => {
   texts = payload.texts
   server.lang("English", setDefaultLang)
   if (window.config.session_type) {
+    console.log('online mode')
     sessionType = 'online'
     erase('.wrapper')
     domInjector('div', '.wrapper', '', 'intro')
-    renderForm()
+    renderWelcome()
   } else {
     renderIntro()
   }
@@ -698,7 +699,6 @@ const refuse = (param) => {
 }
 
 const renderLangs = (payload) => {
-  console.log(payload)
   let langs = payload.langs
   for (let i = 0; i < langs.length; i++) {
     domInjector("option", ".langs", langs[i])

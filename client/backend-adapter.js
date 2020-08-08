@@ -16,6 +16,7 @@ const ajax = (command, url, callback, data=null) => {
 
 const getUser = () => {
   window.config = Object.fromEntries(new URLSearchParams(location.search))
+  console.log(window.config)
   return window.config || {
       "timestamp": new Date().toString(),
       "participant_ID": "NA",
