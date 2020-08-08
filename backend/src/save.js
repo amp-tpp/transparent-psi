@@ -98,6 +98,10 @@ const verifiedSave = (records, agent) => {
         writer = csvProdWriter
         lineCounter["live"] += 1
     }
+    // with this, there will be a csv push for every user interaction
+    if (records.session_type == "online") {
+        writer = csvProdWriter
+    }
     writer.writeRecords([records])
     .then(() => {
         if (records.session_type == "pilot") {
