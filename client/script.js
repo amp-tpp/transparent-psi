@@ -143,6 +143,7 @@ const setLang = (payload) => {
     sessionType = 'online'
     erase('.wrapper')
     domInjector('div', '.wrapper', '', 'intro')
+    document.querySelector('.wrapper').classList.remove('hidden');
     renderWelcome()
   } else {
     renderIntro()
@@ -713,6 +714,7 @@ window.onload = function(e){
   if(!window.config.choosenLang) {
     // user should choose a language
     server.langs(renderLangs)
+    document.querySelector('.wrapper').classList.remove('hidden');
   } else {
     start()
   }
