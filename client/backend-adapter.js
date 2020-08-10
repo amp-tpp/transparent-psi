@@ -15,7 +15,9 @@ const ajax = (command, url, callback, data=null) => {
 }
 
 const getUser = () => {
-  return {
+  window.config = Object.fromEntries(new URLSearchParams(location.search))
+  console.log(window.config)
+  return window.config || {
       "timestamp": new Date().toString(),
       "participant_ID": "NA",
       "experimenter_ID_code": "NA",
@@ -37,7 +39,11 @@ const getUser = () => {
       "guessed_side": "NA",
       "target_side": "NA",
       "reward_type": "NA",
-      "sides_match": "NA"
+      "sides_match": "NA",
+      "experimenter_email" : "NA",
+      "trial_type" : "NA",
+      "available_trial_type" : "NA",
+      "in_lab" : 1
   }
 }
 

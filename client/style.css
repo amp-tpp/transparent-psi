@@ -10,6 +10,10 @@ body {
  width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 .experiment {
  display: flex;
  justify-content: space-around;
@@ -48,6 +52,14 @@ h1 h2 h3 {
   width: 20%;
   margin-left: 40%;
   margin-bottom: 1%;
+}
+
+span {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
 }
 
 h4 {
