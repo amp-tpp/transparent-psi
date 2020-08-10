@@ -1,2 +1,1 @@
-sudo npm start
-
+sudo node server.js prod
