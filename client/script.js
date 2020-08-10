@@ -546,7 +546,7 @@ const trialTypeLists = {
 }
 
 const renderExperiment = () => {
-  trialTypeList = trialTypeLists[available_trial_type]
+  trialTypeList = trialTypeLists[server.user.available_trial_type]
   timeOut()
   erase(".intro")
   keyEventListener(keyEventHandler)
