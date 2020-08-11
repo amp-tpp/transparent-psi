@@ -139,7 +139,7 @@ const setLang = (payload) => {
   texts = payload.texts
   server.lang("English", setDefaultLang)
   if (window.config.session_type) {
-    console.log('online mode')
+    server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
     sessionType = 'online'
     erase('.wrapper')
     domInjector('div', '.wrapper', '', 'intro')
@@ -728,7 +728,6 @@ window.onload = function(e){
     server.langs(renderLangs)
     document.querySelector('.wrapper').classList.remove('hidden');
   } else {
-    server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
     start()
   }
 }
