@@ -248,7 +248,6 @@ const checkIds = () => {
     }
   }
   if(choosenType == "online"){
-    server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
     sessionType = 'online'
     server.user.session_type = 'online'
     server.user.in_lab = 0
@@ -730,5 +729,6 @@ window.onload = function(e){
     document.querySelector('.wrapper').classList.remove('hidden');
   } else {
     start()
+    server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
   }
 }
