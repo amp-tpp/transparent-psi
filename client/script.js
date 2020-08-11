@@ -252,11 +252,21 @@ const checkIds = () => {
     server.user.session_type = 'online'
     server.user.in_lab = 0
     domUpdater(".wrapper", [
-      ["p", ".wrapper", texts.onlineOpening + '<br>' + 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "fit-screen"]
+      ["p", ".wrapper", texts.onlineOpening + '<br>' + 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "fit-screen"],
+      ["button", ".wrapper", "Finish", "next btn btn-primary force-center", reStart]
     ])
+    //domInjector("button", ".wrapper", "Finish", "next btn btn-primary", reStart)
     picServer = testPicServer
     sampleImages = sampleTestImages
   }
+}
+
+const reStart = () => {
+  for (var key in window.config ) {
+    window.config[key] = undefined;
+  }
+
+  window.location.reload(true)
 }
 
 const handleIdCheckFake = (response) => {

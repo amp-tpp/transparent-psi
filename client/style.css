@@ -102,3 +102,7 @@ p {
 .fit-screen {
   word-wrap: break-word;
 }
+
+.force-center {
+  align-self: center
+}
