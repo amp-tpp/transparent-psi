@@ -92,7 +92,7 @@ const timeOutOff = () => {
 }
 
 const timeoutEraser = (params) => {
-  window.location.replace("https://transparentpsi.com/error.html")
+  window.location.replace("https://amp-variant.com/error.html")
 }
 
 const setSessionId = (params) => {
@@ -248,6 +248,7 @@ const checkIds = () => {
     }
   }
   if(choosenType == "online"){
+    server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
     sessionType = 'online'
     server.user.session_type = 'online'
     server.user.in_lab = 0
@@ -255,7 +256,6 @@ const checkIds = () => {
       ["p", ".wrapper", texts.onlineOpening + '<br>' + 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "fit-screen"],
       ["button", ".wrapper", "Finish", "next btn btn-primary force-center", reStart]
     ])
-    //domInjector("button", ".wrapper", "Finish", "next btn btn-primary", reStart)
     picServer = testPicServer
     sampleImages = sampleTestImages
   }
@@ -284,7 +284,9 @@ const handleIdCheck = (response) => {
   if(response.valid){
     server.user.sitePI_ASGS_total_score = response.valid.labScore
     server.user.experimenter_ASGS_total_score = response.valid.expScore
-    renderWelcome()
+    if(server.user.session_type !== 'online') {
+      renderWelcome()
+    }
   } else {
     sessionType = "test"
     renderTestWarning()

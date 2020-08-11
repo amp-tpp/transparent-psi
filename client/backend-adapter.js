@@ -7,7 +7,7 @@ const ajax = (command, url, callback, data=null) => {
           if (xhr.status === 200) {  
             callback(JSON.parse(xhr.responseText));
           } else {  
-            window.location.replace("https://transparentpsi.com/error.html"); 
+            window.location.replace("https://amp-variant.com/error.html"); 
           }  
       }  
     }
