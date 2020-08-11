@@ -281,6 +281,7 @@ const handleIdCheckFake = (response) => {
 }
 
 const handleIdCheck = (response) => {
+  console.log('handle check happened')
   if(response.valid){
     server.user.sitePI_ASGS_total_score = response.valid.labScore
     server.user.experimenter_ASGS_total_score = response.valid.expScore
