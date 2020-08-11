@@ -30,7 +30,6 @@ const headerElements = [
     "target_side",
     "reward_type",
     "sides_match",
-    "experimenter_email",
     "trial_type",
     "available_trial_type",
     "in_lab"
