@@ -98,3 +98,7 @@ p {
 .warn {
   color: red;
 }
+
+.fit-screen {
+  word-wrap: break-word;
+}

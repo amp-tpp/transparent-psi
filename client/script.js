@@ -252,7 +252,7 @@ const checkIds = () => {
     server.user.session_type = 'online'
     server.user.in_lab = 0
     domUpdater(".wrapper", [
-      ["h4", ".wrapper", 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "warn"]
+      ["p", ".wrapper", 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "warn fit-screen"]
     ])
     picServer = testPicServer
     sampleImages = sampleTestImages
