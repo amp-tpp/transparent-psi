@@ -728,7 +728,7 @@ window.onload = function(e){
     server.langs(renderLangs)
     document.querySelector('.wrapper').classList.remove('hidden');
   } else {
-    start()
     server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
+    start()
   }
 }
