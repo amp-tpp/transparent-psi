@@ -591,6 +591,9 @@ const renderFinish = () => {
   for(let i = 3; i < 21; i++){
     domInjector("h1", ".intro", texts[`result_screen_${i}`])
   }
+  if(server.user.session_type === 'online') {
+    domInjector("p", ".intro", texts.onilineEnd + ' ' + server.user.experimenter_email)
+  }
   domInjector("button", ".intro", texts.quit, "next btn btn-primary")
 }
 
