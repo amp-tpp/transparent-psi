@@ -220,7 +220,8 @@ const checkIds = () => {
   setUser(["experimenter_ID_code", "laboratory_ID_code", "experimenter_email"])
   getAvailableTrialType()
   server.user.in_lab = in_lab
-  neededReward = document.querySelector(".reward").checked
+  const rewardCheckbox = document.querySelector(".reward")
+  neededReward = rewardCheckbox ? rewardCheckbox.checked : false
   if(choosenType == "test"){
     liveCounter = 1
     sessionType = "test"
