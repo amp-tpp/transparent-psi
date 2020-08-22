@@ -681,7 +681,7 @@ const chooseImage = (side) => {
   return () => {
   activeKeyListener = false
   server.ping(handlePing(side))
-  window.setTimeout(nextPictures, 2000)
+  window.setTimeout(nextPictures, 4000)
   }
 }
 
