@@ -413,7 +413,7 @@ const renderAfterTestImage = () => {
   erase(".wrapper")
   domInjector("form", ".wrapper", "", "intro")
   domInjector("h4", ".intro", texts.afterForm)
-  if (neededReward) {
+  if (neededReward || server.user.neededReward) {
     domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderReward)
   } else {
     domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderESP)
