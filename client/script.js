@@ -221,6 +221,7 @@ const checkIds = () => {
   getAvailableTrialType()
   server.user.in_lab = in_lab
   neededReward = document.querySelector(".reward").checked
+  server.user.neededReward = neededReward
   if(choosenType == "test"){
     liveCounter = 1
     sessionType = "test"
