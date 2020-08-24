@@ -631,7 +631,7 @@ const popTrialType = () => {
 
 const pushServer = (target ,guess, pics) => {
   if (target == guess) {
-    if (pics.includes("bern")) {
+    if (pics.includes("bern") && server.user.trial_type === 't') {
       successSexCounter += 1
     } else if(pics.includes(".jpg")) {
       successNeutralCounter += 1
