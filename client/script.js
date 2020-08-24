@@ -405,7 +405,7 @@ const renderTestImage = () => {
     domInjector("div", ".wrapper", "", "experiment")
     domInjector("img", ".experiment", "", "sample")
     document.querySelector(".sample").src = sampleImages[userOrientation]
-    window.setTimeout(renderAfterTestImage, 2000);
+    window.setTimeout(renderAfterTestImage, 4000);
   }
 }
 
@@ -413,11 +413,7 @@ const renderAfterTestImage = () => {
   erase(".wrapper")
   domInjector("form", ".wrapper", "", "intro")
   domInjector("h4", ".intro", texts.afterForm)
-  if (neededReward || server.user.neededReward) {
-    domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderReward)
-  } else {
-    domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderESP)
-  }
+  domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderESP)
   domInjector("button", ".intro", texts.refuseButton, "next btn btn-danger", refuse("final_consent"))
 }
 
@@ -589,13 +585,24 @@ const renderFinish = () => {
   domInjector("h4", ".intro", Math.round(successSexCounter / 18 * 100) + texts.result_screen_2erotic)
   domInjector("h4", ".intro", Math.round(successNeutralCounter / 18 * 100) + texts.result_screen_2non_erotic)
   domInjector("h4", ".intro", texts.result_screen_2finish)
-  for(let i = 3; i < 21; i++){
-    domInjector("h1", ".intro", texts[`result_screen_${i}`])
+
+  neededReward = (server.user.neededReward === 'true')
+
+  if(server.user.session_type !== 'online') {
+    for(let i = 3; i < 21; i++){
+      domInjector("h1", ".intro", texts[`result_screen_${i}`])
+    }
   }
+
   if(server.user.session_type === 'online') {
     domInjector("p", ".intro", texts.onilineEnd + ' ' + server.user.experimenter_email)
   }
-  domInjector("button", ".intro", texts.quit, "next btn btn-primary")
+
+  if (neededReward) {
+    console.log('you are getting reward')
+    domInjector("h4", ".intro", texts.rewardInfo)
+    domInjector("h2", ".intro", getRewardCode())
+  }
 }
 
 const shuffle = (array) => {
@@ -681,7 +688,7 @@ const chooseImage = (side) => {
   return () => {
   activeKeyListener = false
   server.ping(handlePing(side))
-  window.setTimeout(nextPictures, 4000)
+  window.setTimeout(nextPictures, 2000)
   }
 }
 
@@ -711,7 +718,6 @@ const refuse = (param) => {
     }
     erase(".intro")
     domInjector("h4", ".intro", texts.refuse)
-    domInjector("button", ".intro", texts.quit, "next btn btn-primary")
   }
 }
 
