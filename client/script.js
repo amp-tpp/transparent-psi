@@ -413,7 +413,11 @@ const renderAfterTestImage = () => {
   erase(".wrapper")
   domInjector("form", ".wrapper", "", "intro")
   domInjector("h4", ".intro", texts.afterForm)
-  domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderESP)
+  if (neededReward && server.user.session !== 'online') {
+    domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderReward)
+  } else {
+    domInjector("button", ".intro", texts.continueAfterTestImage, "next btn btn-primary", renderESP)
+  }
   domInjector("button", ".intro", texts.refuseButton, "next btn btn-danger", refuse("final_consent"))
 }
 
@@ -641,9 +645,9 @@ const pushServer = (target ,guess, pics) => {
     if(server.user.trial_type === 't') {
       server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     } else if (server.user.trial_type === 'sh') {
-      server.user.reward_type = "neutral"
+      server.user.reward_type = "TBD"
     } else if(server.user.trial_type === 'sc') {
-      server.user.reward_type = "erotic"
+      server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     } 
     //server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     server.user.sides_match = target == guess
