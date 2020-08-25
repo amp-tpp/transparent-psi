@@ -115,8 +115,8 @@ const verifiedSave = (records, agent) => {
                 gitPush(savePath); 
             }
         } else if (records.session_type == "online") {
-            if (lineCounter.live % 200 == 0) {
-                lineCounter.live = 0
+            if (lineCounter.online % 200 == 0) {
+                lineCounter.online = 0
                 gitPush(savePath); 
             }
         } else {
