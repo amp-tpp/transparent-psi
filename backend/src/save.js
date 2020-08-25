@@ -38,7 +38,8 @@ const headerElements = [
 var savePath = ""
 var lineCounter = {
     live: 0,
-    pilot: 0
+    pilot: 0,
+    online: 0
 }
 
 headerElements.forEach(element => {
@@ -97,9 +98,9 @@ const verifiedSave = (records, agent) => {
         writer = csvProdWriter
         lineCounter["live"] += 1
     }
-    // with this, there will be a csv push for every user interaction
     if (records.session_type == "online") {
         writer = csvProdWriter
+        lineCounter["online"] += 1
     }
     writer.writeRecords([records])
     .then(() => {
@@ -109,6 +110,11 @@ const verifiedSave = (records, agent) => {
                 gitPush(savePath); 
             }
         } else if (records.session_type == "live") {
+            if (lineCounter.live % 200 == 0) {
+                lineCounter.live = 0
+                gitPush(savePath); 
+            }
+        } else if (records.session_type == "online") {
             if (lineCounter.live % 200 == 0) {
                 lineCounter.live = 0
                 gitPush(savePath); 
