@@ -252,9 +252,10 @@ const checkIds = () => {
     sessionType = 'online'
     server.user.session_type = 'online'
     server.user.in_lab = 0
-    domUpdater(".wrapper", [
-      ["p", ".wrapper", texts.onlineOpening + '<br>' + 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "fit-screen"],
-      ["button", ".wrapper", "Finish", "next btn btn-primary force-center", reStart]
+    server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
+    domUpdater(".intro", [
+      ["p", ".intro", texts.onlineOpening + '<br>' + 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "fit-screen"],
+      ["button", ".intro", "Finish", "next btn btn-primary force-center", reStart]
     ])
     picServer = testPicServer
     sampleImages = sampleTestImages
@@ -289,6 +290,9 @@ const handleIdCheck = (response) => {
       renderWelcome()
     }
   } else {
+    if(server.user.session_type === 'online') {
+      erase(".intro")
+    }
     sessionType = "test"
     renderTestWarning()
   }
