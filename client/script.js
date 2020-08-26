@@ -649,7 +649,7 @@ const pushServer = (target ,guess, pics) => {
     if(server.user.trial_type === 't') {
       server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     } else if (server.user.trial_type === 'sh') {
-      server.user.reward_type = "TBD"
+      server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     } else if(server.user.trial_type === 'sc') {
       server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     } 
