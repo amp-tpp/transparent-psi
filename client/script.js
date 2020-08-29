@@ -10,6 +10,8 @@ var picList = []
 var successSexCounter = 0
 var firstESP = true
 var successNeutralCounter = 0
+var trueNeutralCounter = 0
+var trueEroticCounter = 0
 var trialTypeList = []
 var choosenLang = "NA"
 var activeKeyListener = false
@@ -601,8 +603,8 @@ const renderFinish = () => {
   erase(".intro")
   erase(".experiment")
   domInjector("h4", ".intro", texts.result_screen_1)
-  domInjector("h4", ".intro", Math.round(successSexCounter / numberOfTrueTrials * 100) + texts.result_screen_2erotic)
-  domInjector("h4", ".intro", Math.round(successNeutralCounter / numberOfTrueTrials * 100) + texts.result_screen_2non_erotic)
+  domInjector("h4", ".intro", Math.round(successSexCounter / trueEroticCounter * 100) + texts.result_screen_2erotic)
+  domInjector("h4", ".intro", Math.round(successNeutralCounter / trueNeutralCounter * 100) + texts.result_screen_2non_erotic)
   domInjector("h4", ".intro", texts.result_screen_2finish)
 
   neededReward = (server.user.neededReward === 'true')
@@ -658,6 +660,11 @@ const pushServer = (target ,guess, pics) => {
   } else {
     if(server.user.trial_type === 't') {
       server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
+      if(server.user.reward_type === 'erotic'){
+        trueEroticCounter += 1
+      } else {
+        trueNeutralCounter += 1
+      }
     } else if (server.user.trial_type === 'sh') {
       server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     } else if(server.user.trial_type === 'sc') {
