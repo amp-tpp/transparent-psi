@@ -282,7 +282,6 @@ const handleIdCheckFake = (response) => {
 }
 
 const handleIdCheck = (response) => {
-  console.log('handle check happened')
   if(response.valid){
     server.user.sitePI_ASGS_total_score = response.valid.labScore
     server.user.experimenter_ASGS_total_score = response.valid.expScore
@@ -586,12 +585,24 @@ const keyEventHandler = (key) => {
   }
 }
 
+const trueTrialCountLUT = {
+  1: 18,
+  2: 0,
+  3: 0, 
+  4: 9,
+  5: 9,
+  6: 0,
+  7: 6
+}
+
 const renderFinish = () => {
+  const numberOfTrueTrials = trueTrialCountLUT[server.user.available_trial_type]
+
   erase(".intro")
   erase(".experiment")
   domInjector("h4", ".intro", texts.result_screen_1)
-  domInjector("h4", ".intro", Math.round(successSexCounter / 18 * 100) + texts.result_screen_2erotic)
-  domInjector("h4", ".intro", Math.round(successNeutralCounter / 18 * 100) + texts.result_screen_2non_erotic)
+  domInjector("h4", ".intro", Math.round(successSexCounter / numberOfTrueTrials * 100) + texts.result_screen_2erotic)
+  domInjector("h4", ".intro", Math.round(successNeutralCounter / numberOfTrueTrials * 100) + texts.result_screen_2non_erotic)
   domInjector("h4", ".intro", texts.result_screen_2finish)
 
   neededReward = (server.user.neededReward === 'true')
@@ -607,8 +618,7 @@ const renderFinish = () => {
   }
 
   if (neededReward) {
-    console.log('you are getting reward')
-    domInjector("h4", ".intro", texts.rewardInfo)
+    domInjector("h4", ".intro", texts.rewardOnlineInfo)
     domInjector("h2", ".intro", getRewardCode())
   }
 }
@@ -637,7 +647,7 @@ const pushServer = (target ,guess, pics) => {
   if (target == guess) {
     if (pics.includes("bern") && server.user.trial_type === 't') {
       successSexCounter += 1
-    } else if(pics.includes(".jpg")) {
+    } else if(pics.includes(".jpg") && server.user.trial_type === 't') {
       successNeutralCounter += 1
     }
   }
