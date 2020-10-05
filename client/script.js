@@ -620,8 +620,13 @@ const renderFinish = () => {
   }
 
   if (neededReward) {
-    domInjector("h4", ".intro", texts.rewardOnlineInfo)
-    domInjector("h2", ".intro", getRewardCode())
+    if(server.user.session_type === 'online') {
+      domInjector("h4", ".intro", texts.rewardOnlineLink)
+      domInjector("h2", ".intro", getRewardCode())
+    } else {
+      domInjector("h4", ".intro", texts.rewardOnlineInfo)
+      domInjector("h2", ".intro", getRewardCode())
+    }
   }
 }
 
