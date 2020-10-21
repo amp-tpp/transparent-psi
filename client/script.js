@@ -7,6 +7,7 @@ var available_trial_type = 0
 var server = ""
 var userOrientation = ""
 var picList = []
+var shamPicList = []
 var successSexCounter = 0
 var firstESP = true
 var successNeutralCounter = 0
@@ -105,8 +106,16 @@ const savePics = (params) => {
   picList = params.urls
 }
 
+const saveShamPics = (params) => {
+  shamPicList = params.urls
+}
+
 const getPicList = (orientation) => {
   server.pic(orientation, savePics)
+}
+
+const getShamPicList = (orientation) => {
+  server.shamPic(orientation, saveShamPics)
 }
 
 const setUser = (params) => {
@@ -135,6 +144,7 @@ const setUserOrientation = (sex, orientation) => {
     }
   }
   getPicList(userOrientation)
+  getShamPicList(userOrientation)
 }
 
 const setLang = (payload) => {

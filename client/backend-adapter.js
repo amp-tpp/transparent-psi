@@ -60,6 +60,12 @@ const picFactory = (url) => {
   }
 }
 
+const shamPicFactory = (url) => {
+  return (orientation, cb) => {
+      ajax('GET', url + "/shamPic/" + orientation, cb);
+  }
+}
+
 const pushFactory = (user, url) => {
   return (user, cb) => {
       ajax('POST', url, cb, user);
@@ -91,6 +97,7 @@ const initServerConnection = (url) => {
       ping: pingFactory(url),
       push: pushFactory(user, url),
       pic: picFactory(url),
+      shamPic: shamPicFactory(url),
       langs: langsFactory(url),
       lang: langFactory(url),
       id: idFactory(url)

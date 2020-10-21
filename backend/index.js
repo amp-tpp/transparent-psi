@@ -45,6 +45,13 @@ app.get('/pic/:type', (req, res) => {
   });
 });
 
+app.get('/shamPic/:type', (req, res) => {
+  res.json({
+    status: "ok",
+    urls: user.getShamPicByType(req.params.type)
+  });
+});
+
 app.get('/lang/:lang', (req, res) => {
   res.json({
     status: "ok",
