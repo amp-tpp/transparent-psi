@@ -133,11 +133,13 @@ const preparePicList = () => {
   const isBern = (element) => element.includes('bern');
   const isNeutral = (element) => !element.includes('bern');
   for (let i = 0; i < shamCount/2; i++) {
+    console.log('prep pic list')
     picList.splice(picList.findIndex(isBern) ,1)
     picList.splice(picList.findIndex(isNeutral) ,1)
   }
 
-  for (let i = 0; i < (picList.length - shamCount)/2; i++) {
+  for (let i = 0; i < (36 - shamCount)/2; i++) {
+    console.log('prep sham pic list')
     shamPicList.splice(shamPicList.findIndex(isBern) ,1)
     shamPicList.splice(shamPicList.findIndex(isNeutral) ,1)
   }
