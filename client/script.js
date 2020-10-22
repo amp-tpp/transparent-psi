@@ -129,8 +129,18 @@ const setUser = (params) => {
 }
 
 const preparePicList = () => {
-  console.log(trialTypeLists[available_trial_type].filter(i => i == 'sh').length)
+  const shamCount = trialTypeLists[available_trial_type].filter(i => i == 'sh').length
+  const isBern = (element) => element.includes('bern');
+  const isNeutral = (element) => !element.includes('bern');
+  for (let i = 0; i < shamCount/2; i++) {
+    picList.splice(picList.findIndex(isBern) ,1)
+    picList.splice(picList.findIndex(isNeutral) ,1)
+  }
 
+  for (let i = 0; i < (picList.length - shamCount)/2; i++) {
+    shamPicList.splice(shamPicList.findIndex(isBern) ,1)
+    shamPicList.splice(shamPicList.findIndex(isNeutral) ,1)
+  }
 }
 
 const setUserOrientation = (sex, orientation) => {
@@ -150,7 +160,6 @@ const setUserOrientation = (sex, orientation) => {
   }
   getPicList(userOrientation)
   getShamPicList(userOrientation)
-  preparePicList()
 }
 
 const setLang = (payload) => {
@@ -426,11 +435,12 @@ const renderTestImage = () => {
     domInjector("div", ".wrapper", "", "experiment")
     domInjector("img", ".experiment", "", "sample")
     document.querySelector(".sample").src = sampleImages[userOrientation]
-    window.setTimeout(renderAfterTestImage, 4000);
+    window.setTimeout(renderAfterTestImage, 4000)
   }
 }
 
 const renderAfterTestImage = () => {
+  preparePicList()
   erase(".wrapper")
   domInjector("form", ".wrapper", "", "intro")
   domInjector("h4", ".intro", texts.afterForm)
@@ -646,7 +656,7 @@ const shuffle = (array) => {
 }
 
 const popPic = () => {
-  return shuffle(picList).splice(0,1)[0]
+  return server.user.trial_type === 'sh' ? shuffle(shamPicList).splice(0,1)[0] : shuffle(picList).splice(0,1)[0]
 }
 
 const popTrialType = () => {
@@ -692,6 +702,7 @@ const handlePing = (side) => {
   server.user.trial_type = actualTrialType
   var actualPic = popPic()
   return (content) => {
+    console.log(actualPic)
     pushServer(content.side, side, actualPic)
     server.user.trial_number += 1
     if (actualTrialType === 't') {
@@ -701,7 +712,7 @@ const handlePing = (side) => {
         document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
       }
     } else if (actualTrialType === 'sh') {
-      document.querySelector("." + side).style["background-image"] = "url(" + picServer + "sham_image_pool/"  + actualPic + ")"
+      document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
     } else if (actualTrialType === 'sc') {
       document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
     }
