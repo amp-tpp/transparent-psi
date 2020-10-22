@@ -56,12 +56,12 @@ let neutral = [
 ]
 
 let shamNeutral = [
-  "sham-2200.jpg", "sham-2215.jpg", "sham-2280.jpg", 
-  "sham-2383.jpg", "sham-2399.jpg", "sham-2455.jpg", 
-  "sham-2516.jpg", "sham-2700.jpg", "sham-2890.jpg", 
-  "sham-2214.jpg", "sham-2230.jpg", "sham-2372.jpg", 
-  "sham-2394.jpg", "sham-2435.jpg", "sham-2487.jpg", 
-  "sham-2635.jpg", "sham-2840.jpg", "sham-9190.jpg"]
+  "sham_image_pool/sham-2200.jpg", "sham_image_pool/sham-2215.jpg", "sham_image_pool/sham-2280.jpg", 
+  "sham_image_pool/sham-2383.jpg", "sham_image_pool/sham-2399.jpg", "sham_image_pool/sham-2455.jpg", 
+  "sham_image_pool/sham-2516.jpg", "sham_image_pool/sham-2700.jpg", "sham_image_pool/sham-2890.jpg", 
+  "sham_image_pool/sham-2214.jpg", "sham_image_pool/sham-2230.jpg", "sham_image_pool/sham-2372.jpg", 
+  "sham_image_pool/sham-2394.jpg", "sham_image_pool/sham-2435.jpg", "sham_image_pool/sham-2487.jpg", 
+  "sham_image_pool/sham-2635.jpg", "sham_image_pool/sham-2840.jpg", "sham_image_pool/sham-9190.jpg"]
 
 let picByType = {
   'mm': [
@@ -88,21 +88,21 @@ let picByType = {
 
 let shamPicByType = {
   'mm': [
-    "sham-bern400.jpg", "sham-bern402.jpg", "sham-bern404.jpg", "sham-bern406.jpg", "sham-bern408.jpg", "sham-bern410.jpg", 
-    "sham-bern412.jpg", "sham-bern414.jpg", "sham-bern416.jpg", "sham-bern401.jpg", "sham-bern403.jpg", "sham-bern405.jpg", 
-    "sham-bern407.jpg", "sham-bern409.jpg", "sham-bern411.jpg", "sham-bern413.jpg", "sham-bern415.jpg", "sham-bern417.jpg"],
+    "sham_image_pool/sham-bern400.jpg", "sham_image_pool/sham-bern402.jpg", "sham_image_pool/sham-bern404.jpg", "sham_image_pool/sham-bern406.jpg", "sham_image_pool/sham-bern408.jpg", "sham_image_pool/sham-bern410.jpg", 
+    "sham_image_pool/sham-bern412.jpg", "sham_image_pool/sham-bern414.jpg", "sham_image_pool/sham-bern416.jpg", "sham_image_pool/sham-bern401.jpg", "sham_image_pool/sham-bern403.jpg", "sham_image_pool/sham-bern405.jpg", 
+    "sham_image_pool/sham-bern407.jpg", "sham_image_pool/sham-bern409.jpg", "sham_image_pool/sham-bern411.jpg", "sham_image_pool/sham-bern413.jpg", "sham_image_pool/sham-bern415.jpg", "sham_image_pool/sham-bern417.jpg"],
   'fm': [
-    "sham-bern100.jpg", "sham-bern102.jpg", "sham-bern104.jpg", "sham-bern106.jpg", "sham-bern108.jpg", "sham-bern110.jpg", 
-    "sham-bern112.jpg", "sham-bern114.jpg", "sham-bern116.jpg", "sham-bern101.jpg", "sham-bern103.jpg", "sham-bern105.jpg", 
-    "sham-bern107.jpg", "sham-bern109.jpg", "sham-bern111.jpg", "sham-bern113.jpg", "sham-bern115.jpg", "sham-bern117.jpg"],
+    "sham_image_pool/sham-bern100.jpg", "sham_image_pool/sham-bern102.jpg", "sham_image_pool/sham-bern104.jpg", "sham_image_pool/sham-bern106.jpg", "sham_image_pool/sham-bern108.jpg", "sham_image_pool/sham-bern110.jpg", 
+    "sham_image_pool/sham-bern112.jpg", "sham_image_pool/sham-bern114.jpg", "sham_image_pool/sham-bern116.jpg", "sham_image_pool/sham-bern101.jpg", "sham_image_pool/sham-bern103.jpg", "sham_image_pool/sham-bern105.jpg", 
+    "sham_image_pool/sham-bern107.jpg", "sham_image_pool/sham-bern109.jpg", "sham_image_pool/sham-bern111.jpg", "sham_image_pool/sham-bern113.jpg", "sham_image_pool/sham-bern115.jpg", "sham_image_pool/sham-bern117.jpg"],
   'mf': [
-    "sham-bern200.jpg", "sham-bern202.jpg", "sham-bern204.jpg", "sham-bern206.jpg", "sham-bern208.jpg", "sham-bern210.jpg", 
-    "sham-bern212.jpg", "sham-bern214.jpg", "sham-bern216.jpg", "sham-bern201.jpg", "sham-bern203.jpg", "sham-bern205.jpg", 
-    "sham-bern207.jpg", "sham-bern209.jpg", "sham-bern211.jpg", "sham-bern213.jpg", "sham-bern215.jpg", "sham-bern217.jpg"],
+    "sham_image_pool/sham-bern200.jpg", "sham_image_pool/sham-bern202.jpg", "sham_image_pool/sham-bern204.jpg", "sham_image_pool/sham-bern206.jpg", "sham_image_pool/sham-bern208.jpg", "sham_image_pool/sham-bern210.jpg", 
+    "sham_image_pool/sham-bern212.jpg", "sham_image_pool/sham-bern214.jpg", "sham_image_pool/sham-bern216.jpg", "sham_image_pool/sham-bern201.jpg", "sham_image_pool/sham-bern203.jpg", "sham_image_pool/sham-bern205.jpg", 
+    "sham_image_pool/sham-bern207.jpg", "sham_image_pool/sham-bern209.jpg", "sham_image_pool/sham-bern211.jpg", "sham_image_pool/sham-bern213.jpg", "sham_image_pool/sham-bern215.jpg", "sham_image_pool/sham-bern217.jpg"],
   'ff': [
-    "sham-bern300.jpg", "sham-bern302.jpg", "sham-bern304.jpg", "sham-bern306.jpg", "sham-bern308.jpg", "sham-bern310.jpg", 
-    "sham-bern312.jpg", "sham-bern314.jpg", "sham-bern316.jpg", "sham-bern301.jpg", "sham-bern303.jpg", "sham-bern305.jpg", 
-    "sham-bern307.jpg", "sham-bern309.jpg", "sham-bern311.jpg", "sham-bern313.jpg", "sham-bern315.jpg", "sham-bern317.jpg"],
+    "sham_image_pool/sham-bern300.jpg", "sham_image_pool/sham-bern302.jpg", "sham_image_pool/sham-bern304.jpg", "sham_image_pool/sham-bern306.jpg", "sham_image_pool/sham-bern308.jpg", "sham_image_pool/sham-bern310.jpg", 
+    "sham_image_pool/sham-bern312.jpg", "sham_image_pool/sham-bern314.jpg", "sham_image_pool/sham-bern316.jpg", "sham_image_pool/sham-bern301.jpg", "sham_image_pool/sham-bern303.jpg", "sham_image_pool/sham-bern305.jpg", 
+    "sham_image_pool/sham-bern307.jpg", "sham_image_pool/sham-bern309.jpg", "sham_image_pool/sham-bern311.jpg", "sham_image_pool/sham-bern313.jpg", "sham_image_pool/sham-bern315.jpg", "sham_image_pool/sham-bern317.jpg"],
 }
 
 this.getPicByType = (type) => random.shuffle(neutral.concat(picByType[type]));

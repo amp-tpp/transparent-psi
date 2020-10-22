@@ -128,6 +128,11 @@ const setUser = (params) => {
   })
 }
 
+const preparePicList = () => {
+  console.log(trialTypeLists[available_trial_type].filter(i => i == 'sh').length)
+
+}
+
 const setUserOrientation = (sex, orientation) => {
   userOrientation += sex == texts.sexChoices[0] ? "m" : "f"
   if (userOrientation == "f") {
@@ -145,6 +150,7 @@ const setUserOrientation = (sex, orientation) => {
   }
   getPicList(userOrientation)
   getShamPicList(userOrientation)
+  preparePicList()
 }
 
 const setLang = (payload) => {
@@ -597,19 +603,7 @@ const keyEventHandler = (key) => {
   }
 }
 
-const trueTrialCountLUT = {
-  1: 18,
-  2: 0,
-  3: 0, 
-  4: 9,
-  5: 9,
-  6: 0,
-  7: 6
-}
-
 const renderFinish = () => {
-  const numberOfTrueTrials = trueTrialCountLUT[server.user.available_trial_type]
-
   erase(".intro")
   erase(".experiment")
   domInjector("h4", ".intro", texts.result_screen_1)
@@ -707,7 +701,7 @@ const handlePing = (side) => {
         document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
       }
     } else if (actualTrialType === 'sh') {
-      document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
+      document.querySelector("." + side).style["background-image"] = "url(" + picServer + "sham_image_pool/"  + actualPic + ")"
     } else if (actualTrialType === 'sc') {
       document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
     }

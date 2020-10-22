@@ -26,7 +26,7 @@ body {
 .image {
     width: 50vw;
     height: 100vh;
-    background-image: url("https://www.ikea.com/us/en/images/products/bengta-black-out-curtain-1-length-blue__0805437_PE769558_S5.JPG");
+    background-image: url("img/curtain.jpg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
