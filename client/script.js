@@ -129,7 +129,7 @@ const setUser = (params) => {
 }
 
 const preparePicList = () => {
-  const shamCount = trialTypeLists[available_trial_type].filter(i => i == 'sh').length
+  const shamCount = trialTypeLists[server.user.available_trial_type].filter(i => i == 'sh').length
   const isBern = (element) => element.includes('bern');
   const isNeutral = (element) => !element.includes('bern');
   for (let i = 0; i < shamCount/2; i++) {
