@@ -133,19 +133,18 @@ const preparePicList = () => {
   const isBern = (element) => element.includes('bern');
   const isNeutral = (element) => !element.includes('bern');
   for (let i = 0; i < shamCount/2; i++) {
-    console.log('prep pic list')
     picList.splice(picList.findIndex(isBern) ,1)
     picList.splice(picList.findIndex(isNeutral) ,1)
   }
 
   for (let i = 0; i < (36 - shamCount)/2; i++) {
-    console.log('prep sham pic list')
     shamPicList.splice(shamPicList.findIndex(isBern) ,1)
     shamPicList.splice(shamPicList.findIndex(isNeutral) ,1)
   }
 }
 
 const setUserOrientation = (sex, orientation) => {
+  console.log('happening')
   userOrientation += sex == texts.sexChoices[0] ? "m" : "f"
   if (userOrientation == "f") {
     if (orientation == texts.orientationChoices[0] || orientation == texts.orientationChoices[3]) {
@@ -690,7 +689,6 @@ const pushServer = (target ,guess, pics) => {
     } else if(server.user.trial_type === 'sc') {
       server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     } 
-    //server.user.reward_type = pics.includes("bern") ? "erotic" : "neutral"
     server.user.sides_match = target == guess
   }
   server.user.session_type = window.config && window.config.session_type ? window.config.session_type : sessionType
@@ -704,7 +702,6 @@ const handlePing = (side) => {
   server.user.trial_type = actualTrialType
   var actualPic = popPic()
   return (content) => {
-    console.log(actualPic)
     pushServer(content.side, side, actualPic)
     server.user.trial_number += 1
     if (actualTrialType === 't') {
@@ -714,7 +711,11 @@ const handlePing = (side) => {
         document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
       }
     } else if (actualTrialType === 'sh') {
-      document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
+      if (sessionType === 'test') {
+        document.querySelector("." + side).style["background-image"] = "url(" + `${baseUrl}:8081/` + actualPic + ")"
+      } else {
+        document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
+      }
     } else if (actualTrialType === 'sc') {
       document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
     }
