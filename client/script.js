@@ -708,7 +708,7 @@ const handlePing = (side) => {
       if (content.side == side) {
         document.querySelector("." + side).style["background-image"] = "url(" + picServer + actualPic + ")"
       } else {
-        document.querySelector("." + side).style["background-image"] = "url(http://www.tate.org.uk/art/images/work/L/L01/L01682_10.jpg)"
+        document.querySelector("." + side).style["background-image"] = "url(img/grey.jpg)"
       }
     } else if (actualTrialType === 'sh') {
       if (sessionType === 'test') {
