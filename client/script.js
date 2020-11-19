@@ -753,7 +753,12 @@ const refuse = (param) => {
   return () => {
     const screenOutUrl = 'https://survey.maximiles.com/screenout?p=59508&m=' + server.user.BilendiID
     console.log(screenOutUrl)
-    fetch(screenOutUrl, {mode: 'no-cors'})
+    fetch(screenOutUrl, {
+      method: 'GET',
+      cache: 'no-cache',
+      mode: 'no-cors',
+      redirect: 'follow',
+      credentials: 'same-origin'})
     console.log(param);
     if (param == "age") {
       pushServer("NA", "NA", "NA")
