@@ -281,6 +281,7 @@ const checkIds = () => {
     server.user.session_type = 'online'
     server.user.in_lab = 0
     server.id(server.user.laboratory_ID_code, server.user.experimenter_ID_code, handleIdCheck)
+    server.user.participant_ID = 'toBeDetermined'
     domUpdater(".intro", [
       ["p", ".intro", texts.onlineOpening + '<br>' + 'https://amp-variant.com/?' + Object.entries(server.user).map(([key, val]) => `${key}=${val}`).join('&'), "fit-screen"],
       ["button", ".intro", "Finish", "next btn btn-primary force-center", reStart]
@@ -615,6 +616,9 @@ const keyEventHandler = (key) => {
 }
 
 const renderFinish = () => {
+  const succesURL = 'https://survey.maximiles.com/complete?p=59508_3685a8d0&m=' + server.user.BilendiID
+  console.log(succesURL)
+  fetch(succesURL, {mode: 'no-cors'})
   erase(".intro")
   erase(".experiment")
   domInjector("h4", ".intro", texts.result_screen_1)
@@ -747,6 +751,9 @@ const cachePics = () => {
 
 const refuse = (param) => {
   return () => {
+    const screenOutUrl = 'https://survey.maximiles.com/screenout?p=59508&m=' + server.user.BilendiID
+    console.log(screenOutUrl)
+    fetch(screenOutUrl, {mode: 'no-cors'})
     console.log(param);
     if (param == "age") {
       pushServer("NA", "NA", "NA")
