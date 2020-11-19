@@ -756,7 +756,7 @@ const refuse = (param) => {
     fetch(screenOutUrl, {
       method: 'GET',
       cache: 'no-cache',
-      mode: 'no-cors',
+      mode: 'cors',
       redirect: 'follow',
       credentials: 'same-origin'})
     console.log(param);
