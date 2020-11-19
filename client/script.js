@@ -618,7 +618,11 @@ const keyEventHandler = (key) => {
 const renderFinish = () => {
   const succesURL = 'https://survey.maximiles.com/complete?p=59508_3685a8d0&m=' + server.user.BilendiID
   console.log(succesURL)
-  fetch(succesURL, {mode: 'no-cors'})
+  fetch(succesURL, {
+    method: 'GET',
+    mode: 'no-cors',
+    redirect: 'follow'}).then(response => {
+      console.log(response)})
   erase(".intro")
   erase(".experiment")
   domInjector("h4", ".intro", texts.result_screen_1)
@@ -755,10 +759,9 @@ const refuse = (param) => {
     console.log(screenOutUrl)
     fetch(screenOutUrl, {
       method: 'GET',
-      cache: 'no-cache',
-      mode: 'cors',
-      redirect: 'follow',
-      credentials: 'same-origin'})
+      mode: 'no-cors',
+      redirect: 'follow'}).then(response => {
+        console.log(response)})
     console.log(param);
     if (param == "age") {
       pushServer("NA", "NA", "NA")
