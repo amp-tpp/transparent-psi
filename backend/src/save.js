@@ -96,7 +96,9 @@ const verifiedSave = (records, agent) => {
         writer.writeRecords([records]).then(() => {
             gitPush(savePath);
         })
-    }
+        
+        return;
+    } 
 
     records.timestamp = `${sha256(records.timestamp)} ${agent}`
     records.experimenter_ID_code = sha256(records.experimenter_ID_code)
