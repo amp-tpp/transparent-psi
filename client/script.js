@@ -642,7 +642,11 @@ const renderFinish = () => {
         session_type: "bilendi",
         type: "Success",
         ID: server.user.BilendiID }
-      server.push(succesObj, console.log)
+        try {
+          server.push(succesObj, console.log)
+        } catch (e) {
+          console.log(e.message)
+        }
     } else {
       domInjector("h4", ".intro", texts.rewardOnlineInfo)
       domInjector("h2", ".intro", getRewardCode())
@@ -775,7 +779,11 @@ const refuse = (param) => {
       session_type: "bilendi",
       type: "screen out",
       ID: server.user.BilendiID }
-    server.push(refuseObj, console.log)
+    try {
+      server.push(refuseObj, console.log)
+    } catch (e) {
+      console.log(e.message)
+    }
   }
 }
 
