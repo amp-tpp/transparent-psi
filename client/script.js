@@ -643,8 +643,8 @@ const renderFinish = () => {
         ID: server.user.BilendiID }
         try {
           server.push(succesObj, console.log)
-        } catch (e) {
-          console.log(e.message)
+        } catch (error) {
+          console.log(error.message)
         }
       domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
     } else {
@@ -780,8 +780,8 @@ const refuse = (param) => {
       ID: server.user.BilendiID }
     try {
       server.push(refuseObj, console.log)
-    } catch (e) {
-      console.log(e.message)
+    } catch (error) {
+      console.log(error.message)
     }
     domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
   }
