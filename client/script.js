@@ -638,7 +638,7 @@ const renderFinish = () => {
   if (neededReward) {
     if(server.user.session_type === 'online') {
       // b.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (b.split("'")[1].concat(`&m=3333`)))
-      domInjector("h4", ".intro", texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BildendiID}`)))
+      domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BildendiID}`)))))
     } else {
       domInjector("h4", ".intro", texts.rewardOnlineInfo)
       domInjector("h2", ".intro", getRewardCode())
@@ -766,7 +766,7 @@ const refuse = (param) => {
       pushServer("NA", "NA", "NA")
     }
     erase(".intro")
-    domInjector("h4", ".intro", texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BildendiID}`))))
+    domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BildendiID}`)))))
   }
 }
 
