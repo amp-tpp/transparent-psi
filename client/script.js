@@ -637,7 +637,6 @@ const renderFinish = () => {
 
   if (neededReward) {
     if(server.user.session_type === 'online') {
-      domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
       const succesObj = {
         session_type: "bilendi",
         type: "Success",
@@ -647,6 +646,7 @@ const renderFinish = () => {
         } catch (e) {
           console.log(e.message)
         }
+      domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
     } else {
       domInjector("h4", ".intro", texts.rewardOnlineInfo)
       domInjector("h2", ".intro", getRewardCode())
@@ -774,7 +774,6 @@ const refuse = (param) => {
       pushServer("NA", "NA", "NA")
     }
     erase(".intro")
-    domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
     const refuseObj = {
       session_type: "bilendi",
       type: "screen out",
@@ -784,6 +783,7 @@ const refuse = (param) => {
     } catch (e) {
       console.log(e.message)
     }
+    domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
   }
 }
 
