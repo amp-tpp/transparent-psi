@@ -64,6 +64,9 @@ const csvPilotWriter = createCsvWriter({
 
 const csvBilendiID = createCsvWriter({
     path: saveBilendiID,
+    header: {id: "ID", title: "ID",
+             id: "type", title: "type"
+    }      
 });
 
 const gitPush = (path) => {
