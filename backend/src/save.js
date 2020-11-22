@@ -76,6 +76,10 @@ const gitPush = (path) => {
 const experimenterPool = {}
 
 const save = (records, agent) => {
+    if (records.session_type === "bilendi") {
+        verifiedSave(records, agent)
+    }
+
     const currentCount = experimenterPool[records.participantID];
     if(currentCount){
         if(currentCount == records.trial_number - 1  || currentCount == records.trial_number){
