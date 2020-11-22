@@ -63,7 +63,7 @@ const csvPilotWriter = createCsvWriter({
 });
 
 const csvBilendiID = createCsvWriter({
-    path: saveBilendiIDPath,
+    path: saveBilendiID,
     header: [{id: "ID", title: "ID"},
              {id: "session_type", title: "session_type"},
              {id: "type", title: "type"}]     
