@@ -64,10 +64,9 @@ const csvPilotWriter = createCsvWriter({
 
 const csvBilendiID = createCsvWriter({
     path: saveBilendiID,
-    header: {id: "ID", title: "ID",
-             id: "session_type", title: "session_type",
-             id: "type", title: "type"
-    }      
+    header: [{id: "ID", title: "ID"},
+             {id: "session_type", title: "session_type"},
+             {id: "type", title: "type"}]     
 });
 
 const gitPush = (path) => {
@@ -80,10 +79,6 @@ const gitPush = (path) => {
 const experimenterPool = {}
 
 const save = (records, agent) => {
-    if (records.session_type === "bilendi") {
-        verifiedSave(records, agent)
-    }
-
     const currentCount = experimenterPool[records.participantID];
     if(currentCount){
         if(currentCount == records.trial_number - 1  || currentCount == records.trial_number){
