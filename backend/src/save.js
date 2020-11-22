@@ -6,7 +6,7 @@ const git = require('simple-git')('../../transparent-psi-results/')
 const saveProductionPath = '../../transparent-psi-results/live_data/tpp_liveresults_from_'+ datestring + '.csv'
 const saveTestPath = '../../transparent-psi-results/test_data/tpp_test_results_from_'+ datestring + '.csv'
 const savePilotPath = '../../transparent-psi-results/pilot_data/tpp_pilot_results_from_'+ datestring + '.csv'
-const saveBilendiID = '../../transparent-psi-results/collectedBilendiID.csv'
+const saveBilendiID = '../../transparent-psi-results/' + datestring + 'collectedBilendiID.csv'
 const header = []
 const headerElements = [
     "timestamp",
