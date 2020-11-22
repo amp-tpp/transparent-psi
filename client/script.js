@@ -639,7 +639,7 @@ const renderFinish = () => {
     if(server.user.session_type === 'online') {
       const succesObj = {
         session_type: "bilendi",
-        type: "Success",
+        type: "success",
         ID: server.user.BilendiID }
         try {
           server.push(succesObj, console.log)

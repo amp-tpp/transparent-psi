@@ -63,7 +63,7 @@ const csvPilotWriter = createCsvWriter({
 });
 
 const csvBilendiID = createCsvWriter({
-    path: saveBilendiID,
+    path: saveBilendiIDPath,
     header: [{id: "ID", title: "ID"},
              {id: "session_type", title: "session_type"},
              {id: "type", title: "type"}]     
@@ -93,7 +93,9 @@ const save = (records, agent) => {
 const verifiedSave = (records, agent) => {
     if(records.session_type === "bilendi") {
         writer = csvBilendiID
-        writer.writeRecords([records]).then(() => gitPush(savePath))
+        writer.writeRecords([records]).then(() => {
+            gitPush(savePath);
+        })
     }
 
     records.timestamp = `${sha256(records.timestamp)} ${agent}`
