@@ -616,13 +616,6 @@ const keyEventHandler = (key) => {
 }
 
 const renderFinish = () => {
-  const succesURL = 'https://survey.maximiles.com/complete?p=59508_3685a8d0&m=' + server.user.BilendiID
-  console.log(succesURL)
-  fetch(succesURL, {
-    method: 'GET',
-    mode: 'no-cors',
-    redirect: 'follow'}).then(response => {
-      console.log(response)})
   erase(".intro")
   erase(".experiment")
   domInjector("h4", ".intro", texts.result_screen_1)
@@ -644,7 +637,8 @@ const renderFinish = () => {
 
   if (neededReward) {
     if(server.user.session_type === 'online') {
-      domInjector("h4", ".intro", texts.rewardOnlineLink)
+      // b.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (b.split("'")[1].concat(`&m=3333`)))
+      domInjector("h4", ".intro", texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BildendiID}`)))
     } else {
       domInjector("h4", ".intro", texts.rewardOnlineInfo)
       domInjector("h2", ".intro", getRewardCode())
@@ -755,13 +749,6 @@ const cachePics = () => {
 
 const refuse = (param) => {
   return () => {
-    const screenOutUrl = 'https://survey.maximiles.com/screenout?p=59508&m=' + server.user.BilendiID
-    console.log(screenOutUrl)
-    fetch(screenOutUrl, {
-      method: 'GET',
-      mode: 'no-cors',
-      redirect: 'follow'}).then(response => {
-        console.log(response)})
     console.log(param);
     if (param == "age") {
       pushServer("NA", "NA", "NA")
@@ -779,7 +766,7 @@ const refuse = (param) => {
       pushServer("NA", "NA", "NA")
     }
     erase(".intro")
-    domInjector("h4", ".intro", texts.refuse)
+    domInjector("h4", ".intro", texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BildendiID}`))))
   }
 }
 
