@@ -90,6 +90,7 @@ const save = (records, agent) => {
 const verifiedSave = (records, agent) => {
     if(records.session_type === "bilendi") {
         writer = csvBilendiID
+        writer.writeRecords([records]).then(() => gitPush(savePath))
     }
 
     records.timestamp = `${sha256(records.timestamp)} ${agent}`

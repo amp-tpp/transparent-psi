@@ -38,11 +38,6 @@ app.post('/', (req, res) => {
   res.json(req.body);
 });
 
-app.post('/bilendiID', (req, res) => {
-  save.save(req.body, req.get('User-Agent'))
-  res.json(req.body);
-});
-
 app.get('/pic/:type', (req, res) => {
   res.json({
     status: "ok",
