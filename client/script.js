@@ -636,9 +636,8 @@ const renderFinish = () => {
   }
 
   if (neededReward) {
-    const bildendiID = server.user.BilendiID
     if(server.user.session_type === 'online') {
-      domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${bildendiID}`)))))
+      domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
     } else {
       domInjector("h4", ".intro", texts.rewardOnlineInfo)
       domInjector("h2", ".intro", getRewardCode())
@@ -765,9 +764,8 @@ const refuse = (param) => {
       server.user.refused_to_answer_sexual_orientation_question = "yes"
       pushServer("NA", "NA", "NA")
     }
-    const bildendiID = server.user.BilendiID
     erase(".intro")
-    domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${bildendiID}`)))))
+    domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
   }
 }
 
