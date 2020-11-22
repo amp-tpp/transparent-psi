@@ -638,6 +638,10 @@ const renderFinish = () => {
   if (neededReward) {
     if(server.user.session_type === 'online') {
       domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=59508_3685a8d0', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
+      server.push({
+        session_type: "bilendi",
+        type: "Success",
+        ID: server.user.BilendiID }, console.log)
     } else {
       domInjector("h4", ".intro", texts.rewardOnlineInfo)
       domInjector("h2", ".intro", getRewardCode())
@@ -766,6 +770,10 @@ const refuse = (param) => {
     }
     erase(".intro")
     domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
+    server.push({
+      session_type: "bilendi",
+      type: "screen out",
+      ID: server.user.BilendiID }, console.log)
   }
 }
 

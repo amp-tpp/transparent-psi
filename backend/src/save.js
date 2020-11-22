@@ -6,6 +6,7 @@ const git = require('simple-git')('../../transparent-psi-results/')
 const saveProductionPath = '../../transparent-psi-results/live_data/tpp_liveresults_from_'+ datestring + '.csv'
 const saveTestPath = '../../transparent-psi-results/test_data/tpp_test_results_from_'+ datestring + '.csv'
 const savePilotPath = '../../transparent-psi-results/pilot_data/tpp_pilot_results_from_'+ datestring + '.csv'
+const saveBilendiID = '../../transparent-psi-results/collectedBilendiID.csv'
 const header = []
 const headerElements = [
     "timestamp",
@@ -61,6 +62,10 @@ const csvPilotWriter = createCsvWriter({
     header: header
 });
 
+const csvBilendiID = createCsvWriter({
+    path: saveBilendiID,
+});
+
 const gitPush = (path) => {
      git
      .add('.')
@@ -83,6 +88,10 @@ const save = (records, agent) => {
 }
  
 const verifiedSave = (records, agent) => {
+    if(records.session_type === "bilendi") {
+        writer = csvBilendiID
+    }
+
     records.timestamp = `${sha256(records.timestamp)} ${agent}`
     records.experimenter_ID_code = sha256(records.experimenter_ID_code)
     records.laboratory_ID_code = sha256(records.laboratory_ID_code)
